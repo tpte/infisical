@@ -282,6 +282,7 @@
         "download": "Download Emergency Kit"
       },
       "change-language": "Change Language",
+      "change-language-hint": "Choose UI language. Only screens wired to i18n are translated; most of the app is still English.",
       "api-keys": {
         "title": "API Keys",
         "description": "Manage your personal API Keys to access the Infisical API.",

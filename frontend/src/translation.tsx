@@ -2,6 +2,10 @@ import { initReactI18next } from "react-i18next";
 import i18n from "i18next";
 import Backend from "i18next-http-backend";
 
+import { INFISICAL_LANGUAGES, resolveInitialLanguage } from "./lib/i18n/languages";
+
+const supportedLngs = INFISICAL_LANGUAGES.map((l) => l.code);
+
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
   // learn more: https://github.com/i18next/i18next-http-backend
@@ -15,9 +19,10 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    lng: "en",
+    lng: resolveInitialLanguage(),
     fallbackLng: "en",
-    // supportedLngs: ["en", "ko", "fr", "pt-BR", "pt-PT", "es"],
+    supportedLngs,
+    load: "currentOnly",
     debug: process.env.NODE_ENV === "development",
     detection: {
       // lookupLocalStorage: "lang"

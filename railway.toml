@@ -1,0 +1,13 @@
+# Infisical standalone (Postgres + Redis as separate Railway services).
+# See deploy/railway/DEPLOY.md
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile.standalone-infisical"
+watchPatterns = ["backend/**", "frontend/**", "Dockerfile.standalone-infisical"]
+
+[deploy]
+healthcheckPath = "/api/status"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+numReplicas = 1
