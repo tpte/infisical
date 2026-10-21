@@ -1,0 +1,22 @@
+Infisical — Mac Safari via Tailscale (no hi-yen CF)
+
+Recommended right now (SSH LocalForward over Tailscale):
+  http://127.0.0.1:18080/
+
+Supervisor on Mac keeps:
+  ssh -N -L 18080:127.0.0.1:80 msi
+  and wakes WSL docker when needed
+  log: /tmp/infisical-ts-forward.log
+
+SITE_URL=http://127.0.0.1:18080
+
+Direct Tailscale (when WSL stays up):
+  http://msi:8080/
+  (Windows portproxy 8080 → WSL :80 + firewall rule)
+
+Known issue on MSI:
+  Ubuntu-24.04 WSL is periodically poweroff/terminated (journal: InitTerminateInstanceInternal /
+  systemctl poweroff). That kills docker for ~1–3 minutes. Direct :8080 then fails until WSL is awake again.
+  The Mac SSH supervisor is the reliable Safari path until that terminate source is found/stopped.
+
+Do not use infisical-vault.hi-yen.com for this.

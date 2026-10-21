@@ -1,0 +1,23 @@
+# MSI / first-boot: certificate_requests partitioning migration needs many locks in one transaction.
+services:
+  db:
+    command:
+      - postgres
+      - -c
+      - max_locks_per_transaction=512
+      - -c
+      - statement_timeout=0
+    healthcheck:
+      interval: 30s
+      timeout: 30s
+      retries: 30
+      start_period: 900s
+  backend:
+    # v0.155.0+ runs a first-boot migration that can fail on MSI/WSL (240 parallel partitions).
+    image: infisical/infisical:v0.154.6
+    pull_policy: always
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started

@@ -1,0 +1,8 @@
+# Copy to C:\Users\owzpk\.cloudflared\infisical-config.yml
+# NEVER edit C:\Users\owzpk\.cloudflared\config.yml (vip104-home / hi-yen).
+# No hi-yen.com hostname here — public URL should be workers.dev (or other non-hi-yen zone).
+tunnel: a2e6bbec-641d-42ad-9f94-8a0c0c6e39ca
+credentials-file: C:\Users\owzpk\.cloudflared\a2e6bbec-641d-42ad-9f94-8a0c0c6e39ca.json
+
+ingress:
+  - service: http://127.0.0.1:80

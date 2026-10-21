@@ -1,0 +1,18 @@
+[Unit]
+Description=Infisical trycloudflare quick tunnel (does not use hi-yen config)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=owzpk
+Group=owzpk
+Environment=HOME=/home/owzpk
+ExecStart=/usr/local/bin/cloudflared tunnel --protocol http2 --url http://127.0.0.1:80 --loglevel info
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/owzpk/infisical/cloudflared-infisical/wsl-quick-tunnel.log
+StandardError=append:/home/owzpk/infisical/cloudflared-infisical/wsl-quick-tunnel.log
+
+[Install]
+WantedBy=multi-user.target
